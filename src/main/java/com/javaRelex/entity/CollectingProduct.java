@@ -21,8 +21,8 @@ public class CollectingProduct {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
     private Product product;
-    private int theRateOfCollection; //количество
-    private int collecting; //собрано
+    private int theRateOfCollection;
+    private int collecting;
     @Temporal(TemporalType.DATE)
     private Date date;
 }
