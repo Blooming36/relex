@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Template</title>
+</head>
+<body>
+<h2>Статистика сбора продукции</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Отчество</th>
+        <th>Количество</th>
+        <th>Собрано</th>
+        <th>Продукт</th>
+        <th>Единица измерения</th>
+        <th>Дата</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.firstName}"></td>
+        <td th:text="${item.lastName}"></td>
+        <td th:text="${item.patronymic}"></td>
+        <td th:text="${item.theRateOfCollection}"></td>
+        <td th:text="${item.collecting}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.unitOfMeasurement}"></td>
+        <td th:text="${#dates.format(item.date, 'dd.MM.yyyy')}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

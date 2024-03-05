@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,21 +20,22 @@ public class StatisticService {
     private CollectingProductRepository collectingProductRepository;
     @Autowired
     private CollectingProductStatisticMapper collectingProductStatisticMapper;
+
     public List<CollectingProductStatisticDto> getCollectingProducts(String period, Integer userId) {
         List<CollectingProductStatisticDto> collectingProductStatisticDtos = new ArrayList<>();
         if (period != null) {
             switch (period) {
                 case "day":
-                    collectingProductStatisticDtos=conertList(collectingProductRepository.findAllByDate(new Date()));
+                    collectingProductStatisticDtos = conertList(collectingProductRepository.findAllByDate(new Date()));
                     break;
                 case "week":
-                    collectingProductStatisticDtos=conertList(collectingProductRepository.findCollectingProductsForDate(
-                            getStartOfWeek(new Date()),getEndOfWeek(new Date())
+                    collectingProductStatisticDtos = conertList(collectingProductRepository.findCollectingProductsForDate(
+                            getStartOfWeek(new Date()), getEndOfWeek(new Date())
                     ));
                     break;
                 case "month":
-                    collectingProductStatisticDtos=conertList(collectingProductRepository.findCollectingProductsForDate(
-                            getStartOfMonth(new Date()),getEndOfMonth(new Date())
+                    collectingProductStatisticDtos = conertList(collectingProductRepository.findCollectingProductsForDate(
+                            getStartOfMonth(new Date()), getEndOfMonth(new Date())
                     ));
                     break;
             }
@@ -43,15 +43,17 @@ public class StatisticService {
         if (userId != null) {
             collectingProductStatisticDtos = conertList(collectingProductRepository.findAllByUserInfoId(userId));
         }
-        if (collectingProductStatisticDtos == null){
+        if (collectingProductStatisticDtos == null) {
             collectingProductStatisticDtos = conertList(collectingProductRepository.findAll());
         }
         return collectingProductStatisticDtos;
     }
-    public List<CollectingProductStatisticDto> conertList(List<CollectingProduct> collectingProducts){
-        return collectingProducts.stream().map(el->collectingProductStatisticMapper.toDTO(el))
+
+    public List<CollectingProductStatisticDto> conertList(List<CollectingProduct> collectingProducts) {
+        return collectingProducts.stream().map(el -> collectingProductStatisticMapper.toDTO(el))
                 .collect(Collectors.toList());
     }
+
     public static Date getStartOfWeek(Date date) {
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate startOfWeek = localDate.minusDays(localDate.getDayOfWeek().getValue() - 1);

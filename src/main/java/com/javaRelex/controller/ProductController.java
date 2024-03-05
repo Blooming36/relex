@@ -14,6 +14,7 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
     @PostMapping("/addNewProduct")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String addNewProduct(@RequestBody Product product) {
