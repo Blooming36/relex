@@ -89,7 +89,7 @@
     }   
 ```
 #### Добовления рейтинга пользователю
-`Post localhost:8080/rating/addRatingUser/??rating=? `
+`Post localhost:8080/rating/addRatingUser/??rating=? ` <br>
 `Ответ `
 ```
   {
@@ -105,7 +105,7 @@
   }  
 ```
 #### Добовления нормы сбора
-`Post localhost:8080/collecting/setNormUser/?/??theRateOfCollection=? `
+`Post localhost:8080/collecting/setNormUser/?/??theRateOfCollection=? ` <br>
 `Ответ `
 ```
   {
@@ -132,7 +132,7 @@
     } 
 ```
 #### Сбор продуктов
-`Post localhost:8080/collecting/collectingProduct/?/??collect=? `
+`Post localhost:8080/collecting/collectingProduct/?/??collect=? ` <br>
 `Ответ `
 ```
   {
