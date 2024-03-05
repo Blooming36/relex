@@ -20,6 +20,7 @@ public class EmployeeRatingController {
     }
 
     @GetMapping("/checkRating/{id}")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public String checkRatingUser(@PathVariable("id") int id) {
         return employeeRatingService.checkRating(id);
     }

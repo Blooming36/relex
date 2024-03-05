@@ -6,6 +6,7 @@ import com.javaRelex.service.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,7 @@ public class StatisticController {
     @Value("${mail.subject}")
     private String subject;
     @GetMapping("/collecting-products")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
     public List<CollectingProductStatisticDto> getCollectingProducts(@RequestParam(required = false) String period,
                                                                      @RequestParam(required = false) Integer userId) {
         return statisticService.getCollectingProducts(period, userId);
