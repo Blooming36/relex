@@ -27,5 +27,150 @@
     "password": "2002"
 }
 ```
-` Ответ `
-``` eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5pbGEiLCJpYXQiOjE3MDk2NjAwMTgsImV4cCI6MTcwOTc0NjQxOH0.kBDRiJr9JAoN1gbysHdG2TdQ6J_PPqHx4cr8_Rn3MXY ```
+`Ответ `
+```
+  {
+    tocken : eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5pbGEiLCJpYXQiOjE3MDk2NjAwMTgsImV4cCI6MTcwOTc0NjQxOH0.kBDRiJr9JAoN1gbysHdG2TdQ6J_PPqHx4cr8_Rn3MXY
+  }
+```
+#### Регистрация пользователя
+`Post localhost:8080/auth/addNewUser `
+```
+{
+    "firstName": "666",
+    "lastName": "321",
+    "patronymic": "321",
+    "email": "666@Gmail.com",
+    "password": "2002",
+    "roles": "ROLE_USER"
+}
+```
+`Ответ `
+```
+  {
+    text : Пользователь добавлен в system
+  }
+```
+#### Блокировка пользователей
+`Post localhost:8080/auth/blockUser/? ` <br>
+`Ответ `
+```
+  {
+    text :Пользователь с id ? заблокирован
+  }
+```
+#### Добавления нового продукта
+`Post localhost:8080/product/addNewProduct ` <br>
+```
+{
+    "name": "Яйки",
+    "unitOfMeasurement" : "Шт"
+}
+```
+`Ответ `
+```
+  {
+    text : Товар Яйки2 добавлен !
+  }
+```
+#### Получение всех продуктов
+`Get localhost:8080/product/allProduct ` <br>
+`Ответ `
+```
+    {
+        "id": 1,
+        "name": "Арбуз",
+        "unitOfMeasurement": "Кг"
+    },
+    {
+        "id": 2,
+        "name": "Ягода",
+        "unitOfMeasurement": "Кг"
+    }   
+```
+#### Добовления рейтинга пользователю
+`Post localhost:8080/rating/addRatingUser/??rating=? `
+`Ответ `
+```
+  {
+    text : Пользователю c именем ? добавлен рейтинг ?
+  }
+```
+#### Просмотр рейтинга
+`Get localhost:8080/rating/checkRating/? ` <br>
+`Ответ `
+```
+  {
+    text : Вы сегодня получили оценку  ?
+  }  
+```
+#### Добовления нормы сбора
+`Post localhost:8080/collecting/setNormUser/?/??theRateOfCollection=? `
+`Ответ `
+```
+  {
+    text : Вы добавили дневную норму для пользователя ?
+  }
+```
+#### Просмотр сбора продуктов пользователя
+`Get localhost:8080/collecting/getAllProductForUser/? ` <br>
+`Ответ `
+```
+     {
+        "theRateOfCollection": 50,
+        "collecting": 60,
+        "date": "2024-03-05",
+        "name": "Голубика",
+        "unitOfMeasurement": "Кг"
+    },
+    {
+        "theRateOfCollection": 50,
+        "collecting": 60,
+        "date": "2024-03-05",
+        "name": "Яйки",
+        "unitOfMeasurement": "Шт"
+    } 
+```
+#### Сбор продуктов
+`Post localhost:8080/collecting/collectingProduct/?/??collect=? `
+`Ответ `
+```
+  {
+    text : Вы собрали больше на 20 Шт 
+  }
+```
+#### Просмотр статистики фермы
+`Get localhost:8080/statistic/collecting-products?period=&userId= ` <br>
+`Ответ `
+```
+  {
+        "firstName": "Dima",
+        "lastName": "Mens",
+        "patronymic": "Front",
+        "theRateOfCollection": 50,
+        "collecting": 0,
+        "name": "Ягода",
+        "unitOfMeasurement": "Кг",
+        "date": "2024-03-05"
+    },
+    {
+        "firstName": "danila",
+        "lastName": "Aleks",
+        "patronymic": "Grom",
+        "theRateOfCollection": 50,
+        "collecting": 0,
+        "name": "Ягода",
+        "unitOfMeasurement": "Кг",
+        "date": "2024-03-05"
+    },
+    {
+        "firstName": "danila",
+        "lastName": "Aleks",
+        "patronymic": "Grom",
+        "theRateOfCollection": 40,
+        "collecting": 70,
+        "name": "Арбуз",
+        "unitOfMeasurement": "Кг",
+        "date": "2024-03-05"
+    }
+```
