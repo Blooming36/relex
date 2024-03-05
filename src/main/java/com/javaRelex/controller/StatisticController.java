@@ -27,7 +27,6 @@ public class StatisticController {
     }
 
     @Scheduled(cron = "0 0 18 * * *")
-    @Scheduled(fixedRate = 10000)
     public void performDailyTask() {
         String to = "nebesa566@gmail.com";
         String subject = "Ежедневное письмо";
