@@ -43,7 +43,7 @@ public class StatisticService {
         if (userId != null) {
             collectingProductStatisticDtos = conertList(collectingProductRepository.findAllByUserInfoId(userId));
         }
-        if (collectingProductStatisticDtos == null) {
+        if (collectingProductStatisticDtos.isEmpty()) {
             collectingProductStatisticDtos = conertList(collectingProductRepository.findAll());
         }
         return collectingProductStatisticDtos;

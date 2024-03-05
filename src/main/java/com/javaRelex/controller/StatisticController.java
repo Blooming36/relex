@@ -1,5 +1,6 @@
 package com.javaRelex.controller;
 
+import com.javaRelex.dto.CollectingProductStatisticDto;
 import com.javaRelex.service.EmailService;
 import com.javaRelex.service.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,13 @@ public class StatisticController {
     private EmailService emailService;
 
     @GetMapping("/collecting-products")
-    public List<?> getCollectingProducts(@RequestParam(required = false) String period,
-                                         @RequestParam(required = false) Integer userId) {
+    public List<CollectingProductStatisticDto> getCollectingProducts(@RequestParam(required = false) String period,
+                                                                     @RequestParam(required = false) Integer userId) {
         return statisticService.getCollectingProducts(period, userId);
     }
 
-    @Scheduled(cron = "0 18 * * *")
-    //@Scheduled(fixedRate = 1000)
+    @Scheduled(cron = "0 0 18 * * *")
+    @Scheduled(fixedRate = 10000)
     public void performDailyTask() {
         String to = "nebesa566@gmail.com";
         String subject = "Ежедневное письмо";
